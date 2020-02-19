@@ -1,5 +1,5 @@
-import { Pokemon } from "./pokemon";
-import { Move } from "./move";
+import { Pokemon } from "../model/pokemon/pokemon";
+import { Move } from "../model/move/move";
 import { Battle } from "./battle";
 
 let charmanderMoves = [new Move("Scratch", 40, Category.Physic, 1), new Move("Ember", 40, Category.Special, 1)];

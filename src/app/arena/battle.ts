@@ -1,5 +1,5 @@
-import {Pokemon} from "./pokemon"
-import { Move } from "./move";
+import { Pokemon } from "../model/pokemon/pokemon";
+import { Move } from "../model/move/move";
 
 class Battle {
     
