@@ -1,5 +1,6 @@
 import { Pokemon } from "../model/pokemon/pokemon";
 import { Move } from "../model/move/move";
+import { Category } from "../model/move/Category"
 
 class Battle {
     

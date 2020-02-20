@@ -1,3 +1,5 @@
+import { Category } from "./Category";
+
 class Move {
 
     name: string;
