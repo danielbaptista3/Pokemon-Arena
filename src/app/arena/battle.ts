@@ -1,6 +1,6 @@
-import { Pokemon } from "../model/pokemon/pokemon";
-import { Move } from "../model/move/move";
-import { Category } from "../model/move/Category"
+import { Pokemon } from "../models/pokemon/pokemon";
+import { Move } from "../models/move/move";
+import { Category } from "../models/move/Category"
 
 class Battle {
     

@@ -1,7 +1,21 @@
-<div style="width: 100%; height: 100%;" class="homeBackground">
+
+    <div style="width: 100%; height: 100%;" class="homeBackground">
     <div class="centeredDiv">
       <p>Bonsoir jeune homme, qui êtes-vous ?</p>
-      <input #textbox type="text" [(ngModel)]="trainerName" required>
-      <button mat-fab color="primary" (click)="goToTeamBuilder('textbox.value')" class="centeredElement" style="left: 28%">Go !</button>
+      <input type="text" required (change)="setTrainerName($event)">
+      
+      <button mat-fab color="primary" (click)="goToTeamBuilder()" class="centeredElement" style="left: 28%">Go !</button>
     </div>
   </div>
+
+
+  <!--
+      <div style="width: 100%; height: 100%;" class="homeBackground">
+    <div class="centeredDiv">
+      <p>Bonsoir jeune homme, qui êtes-vous ?</p>
+      <input type="text" [(ngModel)]="trainerName" required>
+      <button mat-fab color="primary" (click)="goToTeamBuilder()" class="centeredElement" style="left: 28%">Go !</button>
+    </div>
+  </div>
+
+  -->

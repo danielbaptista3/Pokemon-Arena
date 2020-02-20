@@ -23,6 +23,11 @@ class Trainer {
         this.pokemons[newPosition] = firstPokemonToSwitch;
         this.pokemons[oldPosition] = secondPokemonToSwitch;
     }
+
+    getName() : string
+    {
+        return this.name;
+    }
 }
 
 export { Trainer }

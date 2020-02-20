@@ -8,22 +8,16 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { AppComponent } from './app.component';
 import { GameComponent } from './views/game/game.component';
-//import { Battle } from './services/Battle';
-//import { PokemonComponent } from './view/pokemon/pokemon.component';
-//import { NewGameComponent } from './view/new-game/new-game.component';
-//import { SpellDialogComponent } from './view/spell-dialog/spell-dialog.component';
 import { HomeComponent} from './views/home/home.component';
-//import { DialogService } from './services/dialog.service';
 import { TeamBuilderComponent } from './views/team-builder/team-builder.component';
+import { GameService } from './service/GameService';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     GameComponent,
-    //PokemonComponent,
-    //NewGameComponent,
-    //SpellDialogComponent,
+
     TeamBuilderComponent
   ],
   imports: [
@@ -31,10 +25,10 @@ import { TeamBuilderComponent } from './views/team-builder/team-builder.componen
     AppRoutingModule,
     MaterialModule,
     BrowserAnimationsModule
+    
   ],
   providers: [
-    //Battle,
-    //DialogService,
+    GameService,
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {apperance: 'fill'}}
   ],
   bootstrap: [AppComponent]

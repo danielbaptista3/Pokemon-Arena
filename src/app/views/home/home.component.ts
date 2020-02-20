@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GameService } from 'src/app/service/GameService';
+import { Trainer } from 'src/app/models/trainer/trainer';
 
 @Component({
   selector: 'app-home',
@@ -8,14 +10,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  trainerName;
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  trainerName: string;
+  constructor(private route: ActivatedRoute, private router: Router, private gameService:GameService) { }
 
   ngOnInit(): void {
   }
 
   goToTeamBuilder() {
+    let trainer = new Trainer(this.trainerName.toString());
+    this.gameService.setTrainer(trainer);
     this.router.navigate(['teamBuilder']);
   }
 
+  setTrainerName(event) : void
+  {
+    console.log(event.target.value);
+    this.trainerName = event.target.value;
+  }
 }
