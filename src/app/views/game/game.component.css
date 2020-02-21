@@ -1,0 +1,23 @@
+
+@font-face {
+    font-family: pokemonFontBlack;
+    src: local("Pokemon_Solid"), url(/assets/fonts/Pokemon_Solid.ttf) format("truetype");
+}
+
+.stadium > section {
+    display: block;
+    box-sizing: border-box;
+}
+.stadium > section .char {
+    height: 175px;
+    position: relative;
+}
+
+.pauseButton {
+    background-color: black;
+    font-family: pokemonFontBlack;
+    color: #eeeeee;
+    font-size:20px;
+    letter-spacing: 10px;
+    margin: 3px 15px;
+}

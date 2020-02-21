@@ -12,6 +12,8 @@ import { HomeComponent} from './views/home/home.component';
 import { TeamBuilderComponent } from './views/team-builder/team-builder.component';
 import { GameService } from './service/GameService';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     AppRoutingModule,
     MatGridListModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    HttpModule
     
   ],
   providers: [

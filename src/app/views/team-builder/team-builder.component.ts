@@ -5,6 +5,8 @@ import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { Move } from 'src/app/models/move/move';
 import { Category } from 'src/app/models/move/Category';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { ApiPokemon } from 'src/app/models/pokemon/APIPokemon';
 
 @Component({
   selector: 'teamBuilder',
@@ -15,6 +17,8 @@ export class TeamBuilderComponent implements OnInit {
 
   pokemons: Pokemon[] = [];
 
+  pokemon: any;
+
   constructor(private route: ActivatedRoute, private router: Router, private gameService:GameService) {
    }
 
@@ -24,23 +28,25 @@ export class TeamBuilderComponent implements OnInit {
       this.router.navigate(['']);
     }
 
-    this.loadDatas();
+    this.gameService.getPokemon(5).subscribe(pokemon => {this.pokemons.push(pokemon)});
+    let test = "";
   }
+
 
   getTrainer() : Trainer
   {
     return this.gameService.getTrainer();
   }
 
-    toBattle(pokemons:Pokemon[]) : void
+    toBattle(pokemon:Pokemon) : void
   {
     let audio = new Audio();
     audio.src = "../../assets/audios/click.mp3";
     audio.load();
     audio.play();
 
-    this.gameService.setTrainerTeam(this.pokemons);
-    this.gameService.setBotTeam(this.pokemons);
+    this.gameService.setTrainerTeam([pokemon]);
+    this.gameService.setBotTeam([this.randomizePokemon()]);
     setTimeout(() => this.navigate(), 2000);
   }
 
@@ -82,4 +88,9 @@ export class TeamBuilderComponent implements OnInit {
     this.pokemons.push(this.getPokemon(25));
   }
 
+
+  randomizePokemon() : Pokemon
+  {
+    return this.pokemons[Math.floor(Math.random() * 2)];
+  }
 }
