@@ -1,0 +1,11 @@
+.background{
+    height: 100%;
+    align-items: center;
+}
+
+.centeredDiv{
+    width: 50%;
+    text-align: center;
+    top : 50%;
+}
+
