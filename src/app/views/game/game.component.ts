@@ -25,9 +25,9 @@ export class GameComponent implements OnInit {
     this.botPokemons = this.gameService.getBot().getPokemons();
 
     this.currentTrainerPokemon = this.trainerPokemons[0];
-    this.currentBotPokemon = this.botPokemons[1];
+    this.currentBotPokemon = this.botPokemons[0];
 
-    
+
 
     this.fight();
   }
@@ -52,24 +52,24 @@ export class GameComponent implements OnInit {
       let randomNumber = Math.floor(Math.random() * 2);
       this.attack(attacker, defender, attacker.move[randomNumber]);
 
-      if (defender.hp <=0)
+      if (defender.currentHp <=0)
       {
           console.log(defender.name + " is KO !")
           console.log(attacker.name + " has won.");
           clearInterval(idInterval);
-          this.router.navigate(['teamBuilder']);
+          //this.router.navigate(['teamBuilder']);
       }
       else {
 
         randomNumber = Math.floor(Math.random() * 2);
         this.attack(defender, attacker, defender.move[randomNumber]);
   
-        if (attacker.hp <=0)
+        if (attacker.currentHp <=0)
         {
             console.log(attacker.name + " is KO !")
             console.log(defender.name + " has won !");
             clearInterval(idInterval);
-            this.router.navigate(['teamBuilder']);
+            //this.router.navigate(['teamBuilder']);
         }
       }
     }, 2000);
@@ -86,18 +86,18 @@ export class GameComponent implements OnInit {
     }
   }
 
-  attack(attacker:Pokemon, defender:Pokemon, move:Move): void 
+  attack(attacker: Pokemon, defender: Pokemon, move:Move): void 
   {
       let damage = this.calculateDamage(attacker, defender, move);
-      console.log(attacker.getName() + "attacks with " + move.name + " and deals " + damage + " damages to " + defender.getName());
-      defender.hp = defender.hp - damage;
+      console.log(attacker.getName() + " attacks with " + move.name + " and deals " + damage + " damages to " + defender.getName());
+      defender.currentHp = defender.currentHp - damage;
 
-      if(defender.hp < 0)
+      if(defender.currentHp < 0)
       {
-        defender.hp = 0;
+        defender.currentHp = 0;
       }
 
-      console.log(defender.getName() + " has now " + defender.getHp().toString() + " hp left");
+      console.log(defender.getName() + " has now " + defender.getCurrentHp().toString() + " hp left");
   }
 
   calculateDamage(attacker: Pokemon, defender: Pokemon, move: Move): number {

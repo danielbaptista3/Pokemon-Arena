@@ -1,0 +1,8 @@
+.stadium > section {
+    display: block;
+    box-sizing: border-box;
+}
+.stadium > section .char {
+    height: 175px;
+    position: relative;
+}

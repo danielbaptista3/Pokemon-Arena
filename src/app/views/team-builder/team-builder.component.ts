@@ -50,20 +50,25 @@ export class TeamBuilderComponent implements OnInit {
     return this.gameService.getTrainer();
   }
 
-    toBattle(pokemons:Pokemon[]) : void
+    toBattle(pokemon:Pokemon) : void
   {
     let audio = new Audio();
     audio.src = "../../assets/audios/click.mp3";
     audio.load();
     audio.play();
 
-    this.gameService.setTrainerTeam(this.pokemons);
-    this.gameService.setBotTeam(this.pokemons);
+    this.gameService.setTrainerTeam([pokemon]);
+    this.gameService.setBotTeam([this.randomizePokemon()]);
     setTimeout(() => this.navigate(), 2000);
   }
 
   navigate() : void
   {
     this.router.navigate(['game']);
+  }
+
+  randomizePokemon() : Pokemon
+  {
+    return this.pokemons[Math.floor(Math.random() * 2)];
   }
 }

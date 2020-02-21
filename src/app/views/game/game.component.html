@@ -1,4 +1,14 @@
-<p>game works!</p>
+<section class="stadium">
+    <section class="enemy">
+        <img src="assets/{{currentBotPokemon.image}}_front.gif"> 
+        <mat-progress-bar color="accent" mode="determinate" [value]="(currentBotPokemon.currentHp / currentBotPokemon.hp) * 100"></mat-progress-bar>
+        <p>{{currentBotPokemon.currentHp}}/{{currentBotPokemon.hp}}</p>
+    </section>
+    <section class="hero">
+        <img src="assets/{{currentTrainerPokemon.image}}_back.gif"> 
+        <mat-progress-bar color="accent" mode="determinate" [value]="(currentTrainerPokemon.currentHp / currentTrainerPokemon.hp) * 100"></mat-progress-bar>
+        <p>{{currentTrainerPokemon.currentHp}}/{{currentTrainerPokemon.hp}}</p>
+    </section>
+</section>
 
-<img src="assets/{{currentTrainerPokemon.image}}_back.gif">
-<img src="assets/{{currentBotPokemon.image}}_front.gif">
+<!--[style.background]="'url(assets/battle_background.jpg)'"-->
