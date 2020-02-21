@@ -1,66 +1,34 @@
 <div [style.background]="'url(assets/team_background.jpg)'" class="background">
    <table>
       <tr>
-         <td width="350">
+         <td>
             <h1>Bienvenue {{getTrainer().getName()}} !</h1>
-            <img src="assets/trainer.png" width="300" height="600"/>
          </td>
          <td>
             <h2 style="font-size: large; text-align: center;">Choisissez votre Pokémon:</h2>
-            <div *ngFor="let pokemon of pokemons; let i = index">
-               <div *ngIf="i % 5 == 0">
-                  <table style="padding: 0px;">
-                     <tr>
-                        <td style="background-color:transparent;">
-                           <button mat-button (click)="toBattle(pokemon)" style="position: center; margin: 10px;">
-                              <img src="assets/{{pokemons[i].image}}.gif">
-                           </button>
-                        </td>
-                        <td style="background-color:transparent;">
-                           <button mat-button (click)="toBattle(pokemon)" style="position: center; margin: 10px;">
-                              <img src="assets/{{pokemons[i + 1].image}}.gif">
-                           </button>
-                        </td>
-                        <td style="background-color:transparent;">
-                           <button mat-button (click)="toBattle(pokemon)" style="position: center; margin: 10px;">
-                              <img src="assets/{{pokemons[i + 2].image}}.gif">
-                           </button>
-                        </td>
-                        <td style="background-color:transparent;">
-                           <button mat-button (click)="toBattle(pokemon)" style="position: center; margin: 10px;">
-                              <img src="assets/{{pokemons[i + 3].image}}.gif">
-                           </button>
-                        </td>
-                        <td style="background-color:transparent;">
-                           <button mat-button (click)="toBattle(pokemon)" style="position: center; margin: 10px;">
-                              <img src="assets/{{pokemons[i + 4].image}}.gif">
-                           </button>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td style="background-color:transparent;">
-                           {{pokemons[i].name}}
-                        </td>
-                        <td style="background-color:transparent;">
-                           {{pokemons[i + 1].name}}
-                        </td>
-                        <td style="background-color:transparent;">
-                           {{pokemons[i + 2].name}}
-                        </td>
-                        <td style="background-color:transparent;">
-                           {{pokemons[i + 3].name}}
-                        </td>
-                        <td style="background-color:transparent;">
-                           {{pokemons[i + 4].name}}
-                        </td>
-                     </tr>
-                  </table>
-               </div>
-            </div>
          </td>
       </tr>
       <tr>
-         <td>
+         <td width="30%">
+            <img src="assets/trainer.png" width="200" height="400"/>
+         </td>
+         <td width="70%">
+            <mat-grid-list cols = "5" rowHeight = "120px" gutterSize="5px">
+               <div *ngFor="let pokemon of pokemons;">
+                  <mat-grid-tile>
+                     <div>
+                        <div>
+                           <button mat-button (click)="toBattle(pokemon)">
+                              <img src="assets/{{pokemon.image}}.gif">
+                           </button>
+                        </div>
+                        <div style="background-color:transparent;">
+                           {{pokemon.name}}
+                        </div>
+                     </div>
+                  </mat-grid-tile>
+               </div>
+            </mat-grid-list>
          </td>
       </tr>
    </table>

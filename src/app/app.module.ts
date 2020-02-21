@@ -11,6 +11,7 @@ import { GameComponent } from './views/game/game.component';
 import { HomeComponent} from './views/home/home.component';
 import { TeamBuilderComponent } from './views/team-builder/team-builder.component';
 import { GameService } from './service/GameService';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { GameService } from './service/GameService';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatGridListModule,
     MaterialModule,
     BrowserAnimationsModule
     
