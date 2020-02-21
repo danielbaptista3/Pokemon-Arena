@@ -4,6 +4,7 @@ import { GameService } from 'src/app/service/GameService';
 import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { Move } from 'src/app/models/move/move';
 import { Category } from 'src/app/models/move/Category';
+import { Observable, interval, Subscription} from 'rxjs';
 
 @Component({
   selector: 'game',
@@ -17,6 +18,10 @@ export class GameComponent implements OnInit {
 
   currentTrainerPokemon : Pokemon;
   currentBotPokemon : Pokemon;
+  counter;
+  battlePaused = true;
+  btnText = "PLAY";
+  subscription : Subscription;
 
   constructor(private route: ActivatedRoute, private router: Router, private gameService:GameService) {  }
 
@@ -25,39 +30,44 @@ export class GameComponent implements OnInit {
     this.botPokemons = this.gameService.getBot().getPokemons();
 
     this.currentTrainerPokemon = this.trainerPokemons[0];
-    this.currentBotPokemon = this.botPokemons[0];
+    this.currentBotPokemon = this.botPokemons[1];
 
-
-
-    this.fight();
+    this.counter = interval(1000);
   }
 
   fight() : void
   {
     console.log("The battle between " + this.currentTrainerPokemon.name + " and " + this.currentBotPokemon.name + " starts now !");
 
-    let idInterval = setInterval(() => {
+    let attacker = this.getFastest();
+    let defender : Pokemon;
 
-      let attacker = this.getFastest();
-      let defender : Pokemon;
+    if(attacker === this.currentTrainerPokemon)
+    {
+        defender = this.currentBotPokemon;
+    }
+    else{
+        defender = this.currentTrainerPokemon;
+    }
 
-      if(attacker === this.currentTrainerPokemon)
-      {
-          defender = this.currentBotPokemon;
-      }
-      else{
-          defender = this.currentTrainerPokemon;
-      }
+    let randomNumber = Math.floor(Math.random() * 2);
+    this.attack(attacker, defender, attacker.moves[randomNumber]);
 
-      let randomNumber = Math.floor(Math.random() * 2);
-      this.attack(attacker, defender, attacker.moves[randomNumber]);
+    if (defender.hp <=0)
+    {
+        console.log(defender.name + " is KO !")
+        console.log(attacker.name + " has won.");
+        this.counter.unsubsribe();
+    }
+    else {
 
-      if (defender.currentHp <=0)
+      randomNumber = Math.floor(Math.random() * 2);
+      this.attack(defender, attacker, defender.moves[randomNumber]);
+
+      if (attacker.hp <=0)
       {
           console.log(defender.name + " is KO !")
           console.log(attacker.name + " has won.");
-          clearInterval(idInterval);
-          //this.router.navigate(['teamBuilder']);
       }
       else {
 
@@ -68,14 +78,11 @@ export class GameComponent implements OnInit {
         {
             console.log(attacker.name + " is KO !")
             console.log(defender.name + " has won !");
-            clearInterval(idInterval);
-            //this.router.navigate(['teamBuilder']);
         }
+          this.counter.unsubsribe();
+          this.router.navigate(['teamBuilder']);
       }
-    }, 2000);
-
-
-
+    }
   }
 
   getFastest(): Pokemon{
@@ -86,15 +93,15 @@ export class GameComponent implements OnInit {
     }
   }
 
-  attack(attacker: Pokemon, defender: Pokemon, move:Move): void 
+  attack(attacker:Pokemon, defender:Pokemon, move:Move): void
   {
       let damage = this.calculateDamage(attacker, defender, move);
       console.log(attacker.name + " attacks with " + move.name + " and deals " + damage + " damages to " + defender.name  );
       defender.currentHp = defender.currentHp - damage;
 
-      if(defender.currentHp < 0)
+      if(defender.hp < 0)
       {
-        defender.currentHp = 0;
+        defender.hp = 0;
       }
 
       console.log(defender.name + " has now " + defender.name + " hp left");
@@ -116,5 +123,29 @@ export class GameComponent implements OnInit {
         def = defender.spDefense;
     }
     return Math.floor(Math.floor(Math.floor((2 * attacker.level) / (5 + 2)) * atk * move.power / def) / 50) + 2;
+  }
+
+
+  triggerPauseButton() : void {
+    if(this.battlePaused)
+      this.play();
+    else
+      this.pause();
+  }
+
+  pause() : void {
+    console.log("this.battlePaused = true;")
+    this.subscription.unsubscribe();
+    this.btnText = "PLAY";
+    this.battlePaused = true;
+  }
+
+  play() : void {
+    console.log("this.battlePaused = false;")
+    this.btnText = "PAUSE";
+    this.battlePaused = false;
+    this.subscription = this.counter.subscribe(Data => { 
+      this.fight();
+    });
   }
 }
