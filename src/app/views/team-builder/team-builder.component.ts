@@ -30,8 +30,19 @@ export class TeamBuilderComponent implements OnInit {
     let movesPokemon2 = [new Move("Ember", 40, Category.Special, 1), new Move("Dragon Breath", 60, Category.Special, 1)];
     let pokemon2 = new Pokemon("Charmeleon", 20, 42, 22, 59, 27, 12, 67, movesPokemon2);
 
+    let pokemon3 = new Pokemon("Charmeleon", 20, 42, 22, 59, 27, 12, 67, movesPokemon2);
+    let pokemon4 = new Pokemon("Charmeleon", 20, 42, 22, 59, 27, 12, 67, movesPokemon2);
+    let pokemon5 = new Pokemon("Charmeleon", 20, 42, 22, 59, 27, 12, 67, movesPokemon2);
+    let pokemon6 = new Pokemon("Charmeleon", 20, 42, 22, 59, 27, 12, 67, movesPokemon2);
+    let pokemon7 = new Pokemon("Charmeleon", 20, 42, 22, 59, 27, 12, 67, movesPokemon2);
+
     this.pokemons.push(pokemon1);
     this.pokemons.push(pokemon2);
+    this.pokemons.push(pokemon3);
+    this.pokemons.push(pokemon4);
+    this.pokemons.push(pokemon5);
+    this.pokemons.push(pokemon6);
+    this.pokemons.push(pokemon7);
   }
 
   getTrainer() : Trainer
