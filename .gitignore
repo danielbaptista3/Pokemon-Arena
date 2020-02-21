@@ -48,3 +48,5 @@ package-lock.json
 .ionide/symbolCache.db
 package.json
 package-lock.json
+.vs/Pokemon-Arena/v15/.suo
+.vs/slnx.sqlite

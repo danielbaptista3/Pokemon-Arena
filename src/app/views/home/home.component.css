@@ -20,6 +20,7 @@
 
 .titleText {
     color: white;
+    letter-spacing: 3px;
     font-size: 30px;
     font-family: pokemonFontBlack;
 }
@@ -37,36 +38,16 @@ input[type="inputText"] {
     border-right: none;
     border-bottom: solid #eeeeee 1px;
     padding: 3px 10px;
+    margin: 3px 15px;
 }
 
 
 .rainbow-button {
+    background-color: black;
     font-family: pokemonFontBlack;
+    color: #eeeeee;
+    font-size:20px;
     letter-spacing: 10px;
-    width: calc(12vw + 6px);
-    height: calc(4vw + 6px);
-    background-image: linear-gradient(
-      90deg,
-      #00c0ff 0%,
-      #ffcf00 49%,
-      #fc4f4f 80%,
-      #00c0ff 100%
-    );
-    background-size: cover;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  .rainbow-button:after {
-    content: attr(alt);
-    width: 12vw;
-    height: 4vw;
-    background-color: #191919;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    margin: 3px 15px;
+
+}
