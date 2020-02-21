@@ -19,7 +19,13 @@ describe('TeamBuilderComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should get pokémon', () => {
+    let pkmn = this.getPokemon(1);
+    expect(pkmn).toBeDefined();
+  });
+
+  it('pokemon has moves', () => {
+    let pkmn = this.getPokemon(1);
+    expect(pkmn.moves).toBeDefined();
   });
 });

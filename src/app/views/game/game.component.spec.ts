@@ -19,7 +19,12 @@ describe('GameComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should get fastest pokemon', () => {
+    let pkmn1 = new Pokemon();
+    pkmn1.setSpeed(10);
+
+    let pkmn2 = new Pokemon();
+    pkmn2.setSpeed(100);
+    expect(getFastest(pkmn1, pkmn2)).toBe(pkmn2);
   });
 });

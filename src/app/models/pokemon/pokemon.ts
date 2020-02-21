@@ -49,6 +49,11 @@ class Pokemon {
         return this.name;
     }
 
+    public setSpeed(speed)
+    {
+      this.speed = speed;
+    }
+
     public addMove(move:Move)
     {
         this.moves.push(move);
