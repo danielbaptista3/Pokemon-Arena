@@ -1,11 +1,72 @@
+@font-face {
+    font-family: pokemonFontWhite;
+    src: local("Pokemon_Hollow"), url(/assets/fonts/Pokemon_Hollow.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: pokemonFontBlack;
+    src: local("Pokemon_Solid"), url(/assets/fonts/Pokemon_Solid.ttf) format("truetype");
+}
+
 .background{
     height: 100%;
-    align-items: center;
 }
 
 .centeredDiv{
-    width: 50%;
+    padding-top: 50px;
     text-align: center;
     top : 50%;
 }
 
+.titleText {
+    color: white;
+    font-size: 30px;
+    font-family: pokemonFontBlack;
+}
+
+input[type="inputText"] {
+    font-size:24px;
+    font-family: pokemonFontBlack;
+    letter-spacing: 10px;
+    background-color: transparent;
+    color: #eeeeee;
+    outline: none;
+    outline-style: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #eeeeee 1px;
+    padding: 3px 10px;
+}
+
+
+.rainbow-button {
+    font-family: pokemonFontBlack;
+    letter-spacing: 10px;
+    width: calc(12vw + 6px);
+    height: calc(4vw + 6px);
+    background-image: linear-gradient(
+      90deg,
+      #00c0ff 0%,
+      #ffcf00 49%,
+      #fc4f4f 80%,
+      #00c0ff 100%
+    );
+    background-size: cover;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .rainbow-button:after {
+    content: attr(alt);
+    width: 12vw;
+    height: 4vw;
+    background-color: #191919;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

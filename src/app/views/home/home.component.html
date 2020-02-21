@@ -1,10 +1,8 @@
 <div [style.background]="'url(assets/home_background.jpg)'" class="background">
   <div class="centeredDiv">
-      <div>
-        <p>Bonsoir jeune homme, qui êtes-vous ?</p>
-        <input type="text" required (change)="setTrainerName($event)">
-        
-        <button mat-fab color="primary" (click)="goToTeamBuilder()" class="centeredElement" style="left: 28%">Go !</button>
-      </div>
+        <div class="titleText">Bonjour dresseur ! Quel est votre nom ?
+          <input type="inputText" required (change)="setTrainerName($event)">
+          <button (click)="goToTeamBuilder()"> <a class="rainbow-button" alt = "Bataille!"></a> </button>
+        </div>
   </div>
 </div>
