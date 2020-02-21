@@ -17,14 +17,24 @@ export class HomeComponent implements OnInit {
   }
 
   goToTeamBuilder() {
-    let trainer = new Trainer(this.trainerName.toString());
-    this.gameService.setTrainer(trainer);
-    this.router.navigate(['teamBuilder']);
+    let audio = new Audio();
+    audio.src = "../../assets/audios/click.mp3";
+    audio.load();
+    audio.play();
+
+    this.gameService.setTrainer(new Trainer(this.trainerName))
+    setTimeout(() => this.navigate(), 2000);
+
+  }
+
+  navigate() : void
+  {
+
+    this.router.navigate(['teamBuilder'])
   }
 
   setTrainerName(event) : void
   {
     this.trainerName = event.target.value;
   }
-  
 }

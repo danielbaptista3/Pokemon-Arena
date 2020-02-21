@@ -41,8 +41,18 @@ export class TeamBuilderComponent implements OnInit {
 
     toBattle(pokemons:Pokemon[]) : void
   {
+    let audio = new Audio();
+    audio.src = "../../assets/audios/click.mp3";
+    audio.load();
+    audio.play();
+
     this.gameService.setTrainerTeam(this.pokemons);
     this.gameService.setBotTeam(this.pokemons);
+    setTimeout(() => this.navigate(), 2000);
+  }
+
+  navigate() : void
+  {
     this.router.navigate(['game']);
   }
 }

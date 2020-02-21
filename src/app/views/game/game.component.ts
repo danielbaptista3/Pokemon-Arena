@@ -27,47 +27,55 @@ export class GameComponent implements OnInit {
     this.currentTrainerPokemon = this.trainerPokemons[0];
     this.currentBotPokemon = this.botPokemons[1];
 
+    
+
     this.fight();
   }
 
   fight() : void
   {
-        let idInterval = setInterval(() => {
-            console.log("The battle between " + this.currentTrainerPokemon.name + " and " + this.currentBotPokemon.name + " starts now !");
-            
-            let attacker = this.getFastest();
-            let defender : Pokemon;
-            
-            if(attacker === this.currentTrainerPokemon)
-            {
-                defender = this.currentBotPokemon;
-            }
-            else{
-                defender = this.currentTrainerPokemon;
-            }
-            
-            let randomNumber = Math.floor(Math.random() * 2);
-            this.attack(attacker, defender, attacker.move[randomNumber]);
+    console.log("The battle between " + this.currentTrainerPokemon.name + " and " + this.currentBotPokemon.name + " starts now !");
 
-            if (defender.hp <=0)
-            {
-                console.log(defender.name + " is KO !")
-                console.log(attacker.name + " has won.");
-                clearInterval(idInterval);
-                this.router.navigate(['teamBuilder']);
-            }
+    let idInterval = setInterval(() => {
+      
+      let attacker = this.getFastest();
+      let defender : Pokemon;
+      
+      if(attacker === this.currentTrainerPokemon)
+      {
+          defender = this.currentBotPokemon;
+      }
+      else{
+          defender = this.currentTrainerPokemon;
+      }
+      
+      let randomNumber = Math.floor(Math.random() * 2);
+      this.attack(attacker, defender, attacker.move[randomNumber]);
 
-            randomNumber = Math.floor(Math.random() * 2);
-            this.attack(defender, attacker, defender.move[randomNumber]);
+      if (defender.hp <=0)
+      {
+          console.log(defender.name + " is KO !")
+          console.log(attacker.name + " has won.");
+          clearInterval(idInterval);
+          this.router.navigate(['teamBuilder']);
+      }
+      else {
 
-            if (attacker.hp <=0)
-            {
-                console.log(attacker.name + " is KO !")
-                console.log(defender.name + " has won !");
-                clearInterval(idInterval);
-                this.router.navigate(['teamBuilder']);
-            }
-        }, 2000);
+        randomNumber = Math.floor(Math.random() * 2);
+        this.attack(defender, attacker, defender.move[randomNumber]);
+  
+        if (attacker.hp <=0)
+        {
+            console.log(attacker.name + " is KO !")
+            console.log(defender.name + " has won !");
+            clearInterval(idInterval);
+            this.router.navigate(['teamBuilder']);
+        }
+      }
+    }, 2000);
+
+
+    
   }
 
   getFastest(): Pokemon{
@@ -81,7 +89,7 @@ export class GameComponent implements OnInit {
   attack(attacker:Pokemon, defender:Pokemon, move:Move): void 
   {
       let damage = this.calculateDamage(attacker, defender, move);
-      console.log(attacker.getName() + " deals " + damage + " damage to " + defender.getName());
+      console.log(attacker.getName() + "attacks with " + move.name + " and deals " + damage + " damages to " + defender.getName());
       defender.hp = defender.hp - damage;
 
       if(defender.hp < 0)
