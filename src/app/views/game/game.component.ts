@@ -23,6 +23,8 @@ export class GameComponent implements OnInit {
   btnText = "PLAY";
   subscription : Subscription;
 
+  fightLogs = new Array<String>();
+
   constructor(private route: ActivatedRoute, private router: Router, private gameService:GameService) {  }
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class GameComponent implements OnInit {
 
   fight() : void
   {
-    console.log("The battle between " + this.currentTrainerPokemon.name + " and " + this.currentBotPokemon.name + " starts now !");
+    this.fightLogs.push("The battle between " + this.currentTrainerPokemon.name + " and " + this.currentBotPokemon.name + " starts now !");
 
     let attacker = this.getFastest();
     let defender : Pokemon;
@@ -55,8 +57,8 @@ export class GameComponent implements OnInit {
 
     if (defender.hp <=0)
     {
-        console.log(defender.name + " is KO !")
-        console.log(attacker.name + " has won.");
+        this.fightLogs.push(defender.name + " is KO !")
+        this.fightLogs.push(attacker.name + " has won.");
         this.counter.unsubsribe();
     }
     else {
@@ -66,8 +68,8 @@ export class GameComponent implements OnInit {
 
       if (attacker.hp <=0)
       {
-          console.log(defender.name + " is KO !")
-          console.log(attacker.name + " has won.");
+        this.fightLogs.push(defender.name + " is KO !")
+        this.fightLogs.push(attacker.name + " has won.");
       }
       else {
 
@@ -76,8 +78,8 @@ export class GameComponent implements OnInit {
   
         if (attacker.currentHp <=0)
         {
-            console.log(attacker.name + " is KO !")
-            console.log(defender.name + " has won !");
+          this.fightLogs.push(attacker.name + " is KO !")
+          this.fightLogs.push(defender.name + " has won !");
         }
           this.counter.unsubsribe();
           this.router.navigate(['teamBuilder']);
@@ -96,7 +98,7 @@ export class GameComponent implements OnInit {
   attack(attacker:Pokemon, defender:Pokemon, move:Move): void
   {
       let damage = this.calculateDamage(attacker, defender, move);
-      console.log(attacker.name + " attacks with " + move.name + " and deals " + damage + " damages to " + defender.name  );
+      this.fightLogs.push(attacker.name + " attacks with " + move.name + " and deals " + damage + " damages to " + defender.name  );
       defender.currentHp = defender.currentHp - damage;
 
       if(defender.hp < 0)
@@ -104,7 +106,7 @@ export class GameComponent implements OnInit {
         defender.hp = 0;
       }
 
-      console.log(defender.name + " has now " + defender.name + " hp left");
+      this.fightLogs.push(defender.name + " has now " + defender.name + " hp left");
   }
 
   calculateDamage(attacker: Pokemon, defender: Pokemon, move: Move): number {
@@ -134,14 +136,14 @@ export class GameComponent implements OnInit {
   }
 
   pause() : void {
-    console.log("this.battlePaused = true;")
+    this.fightLogs.push("battle paused")
     this.subscription.unsubscribe();
     this.btnText = "PLAY";
     this.battlePaused = true;
   }
 
   play() : void {
-    console.log("this.battlePaused = false;")
+    this.fightLogs.push("battle unpaused")
     this.btnText = "PAUSE";
     this.battlePaused = false;
     this.subscription = this.counter.subscribe(Data => { 

@@ -11,5 +11,12 @@
     </section>
 </section>
 <section>
-    <button id="pauseButton" (click)="triggerPauseButton()">{{btnText}}</button>
+    <button class="pauseButton" (click)="triggerPauseButton()">{{btnText}}</button>
+</section>
+<section>
+    <ul>
+        <li *ngFor="let log of fightLogs">
+          {{ log }}
+        </li>
+      </ul>
 </section>
