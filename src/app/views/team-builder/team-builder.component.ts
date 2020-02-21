@@ -74,7 +74,12 @@ export class TeamBuilderComponent implements OnInit {
 
   loadDatas()
   {
-    this.pokemons.push(this.getPokemon(5));
+    for (let i=1; i<10; i++)
+    {
+      this.pokemons.push(this.getPokemon(i));
+    }
+    //PIKACHU
+    this.pokemons.push(this.getPokemon(25));
   }
 
 }
