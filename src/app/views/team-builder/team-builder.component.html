@@ -1,2 +1,8 @@
-<p>Bienvenue {{getTrainer().getName()}}</p>
+<h1>Bienvenue {{getTrainer().getName()}}</h1>
 
+<div style="width: 100%; height: 100%; position: center; text-align: center;">
+    <h2 style="font-size: large; text-align: center;">Choisissez votre Pokémon:</h2>
+     <button mat-button *ngFor="let pokemon of pokemons" (click)="toBattle(pokemon)" style="position: center; margin: 10px;">
+        <img src="assets/{{pokemon.image}}.gif">
+     </button>
+  </div>

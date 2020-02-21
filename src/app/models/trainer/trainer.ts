@@ -28,6 +28,11 @@ class Trainer {
     {
         return this.name;
     }
+
+    getPokemons() : Pokemon[]
+    {
+        return this.pokemons;
+    }
 }
 
 export { Trainer }

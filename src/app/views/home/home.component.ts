@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
 
   setTrainerName(event) : void
   {
-    console.log(event.target.value);
     this.trainerName = event.target.value;
   }
 }

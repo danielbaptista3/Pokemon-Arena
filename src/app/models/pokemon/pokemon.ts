@@ -12,6 +12,7 @@ class Pokemon {
     defense: number;
     spDefense: number;
     move: Move[];
+    image: string;
 
     constructor(name: string, level: number, hp:number, speed: number, attack:number, spAttack: number, defense:number, spDefense: number, move: Move[])
     {
@@ -24,6 +25,17 @@ class Pokemon {
         this.defense = defense;
         this.spDefense = spDefense;
         this.move = move;
+        this.image = name;
+    }
+
+    public getName() : string
+    {
+        return this.name;
+    }
+
+    public getHp(): number
+    {
+        return this.hp;
     }
 }
 
