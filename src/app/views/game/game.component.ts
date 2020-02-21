@@ -62,7 +62,7 @@ export class GameComponent implements OnInit {
       else {
 
         randomNumber = Math.floor(Math.random() * 2);
-        this.attack(defender, attacker, defender.move[randomNumber]);
+        this.attack(defender, attacker, defender.moves[randomNumber]);
   
         if (attacker.currentHp <=0)
         {
@@ -89,7 +89,7 @@ export class GameComponent implements OnInit {
   attack(attacker: Pokemon, defender: Pokemon, move:Move): void 
   {
       let damage = this.calculateDamage(attacker, defender, move);
-      console.log(attacker.getName() + " attacks with " + move.name + " and deals " + damage + " damages to " + defender.getName());
+      console.log(attacker.name + " attacks with " + move.name + " and deals " + damage + " damages to " + defender.name  );
       defender.currentHp = defender.currentHp - damage;
 
       if(defender.currentHp < 0)
@@ -97,7 +97,7 @@ export class GameComponent implements OnInit {
         defender.currentHp = 0;
       }
 
-      console.log(defender.getName() + " has now " + defender.getCurrentHp().toString() + " hp left");
+      console.log(defender.name + " has now " + defender.name + " hp left");
   }
 
   calculateDamage(attacker: Pokemon, defender: Pokemon, move: Move): number {

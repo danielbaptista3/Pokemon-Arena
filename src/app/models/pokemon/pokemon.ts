@@ -12,7 +12,6 @@ class Pokemon {
     defense: number;
     spDefense: number;
     moves: Move[];
-    image: string;
     currentHp: number;
 
     /*constructor(name: string, level: number, hp:number, speed: number, attack:number, spAttack: number, defense:number, spDefense: number, move: Move[])
@@ -46,25 +45,6 @@ class Pokemon {
 
     }
 
-    public getName() : string
-    {
-        return this.name;
-    }
-
-    public addMove(move:Move)
-    {
-        this.moves.push(move);
-    }
-
-    public getHp(): number
-    {
-        return this.hp;
-    }
-    
-    public getCurrentHp() : number
-    {
-        return this.currentHp;
-    }
 }
 
 export { Pokemon }

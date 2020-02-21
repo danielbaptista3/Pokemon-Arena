@@ -5,6 +5,8 @@ import { Pokemon } from 'src/app/models/pokemon/pokemon';
 import { Move } from 'src/app/models/move/move';
 import { Category } from 'src/app/models/move/Category';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { ApiPokemon } from 'src/app/models/pokemon/APIPokemon';
 
 @Component({
   selector: 'teamBuilder',
@@ -15,6 +17,8 @@ export class TeamBuilderComponent implements OnInit {
 
   pokemons: Pokemon[] = [];
 
+  pokemon: any;
+
   constructor(private route: ActivatedRoute, private router: Router, private gameService:GameService) {
    }
 
@@ -24,8 +28,10 @@ export class TeamBuilderComponent implements OnInit {
       this.router.navigate(['']);
     }
 
-    this.loadDatas();
+    this.gameService.getPokemon(5).subscribe(pokemon => {this.pokemons.push(pokemon)});
+    let test = "";
   }
+
 
   getTrainer() : Trainer
   {
