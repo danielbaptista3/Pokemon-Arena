@@ -19,7 +19,7 @@ export class GameComponent implements OnInit {
   currentBotPokemon : Pokemon;
 
   constructor(private route: ActivatedRoute, private router: Router, private gameService:GameService) {  }
-  
+
   ngOnInit(): void {
     this.trainerPokemons = this.gameService.getTrainer().getPokemons();
     this.botPokemons = this.gameService.getBot().getPokemons();
@@ -27,7 +27,7 @@ export class GameComponent implements OnInit {
     this.currentTrainerPokemon = this.trainerPokemons[0];
     this.currentBotPokemon = this.botPokemons[1];
 
-    
+
 
     this.fight();
   }
@@ -37,10 +37,10 @@ export class GameComponent implements OnInit {
     console.log("The battle between " + this.currentTrainerPokemon.name + " and " + this.currentBotPokemon.name + " starts now !");
 
     let idInterval = setInterval(() => {
-      
+
       let attacker = this.getFastest();
       let defender : Pokemon;
-      
+
       if(attacker === this.currentTrainerPokemon)
       {
           defender = this.currentBotPokemon;
@@ -48,9 +48,9 @@ export class GameComponent implements OnInit {
       else{
           defender = this.currentTrainerPokemon;
       }
-      
+
       let randomNumber = Math.floor(Math.random() * 2);
-      this.attack(attacker, defender, attacker.move[randomNumber]);
+      this.attack(attacker, defender, attacker.moves[randomNumber]);
 
       if (defender.hp <=0)
       {
@@ -62,8 +62,8 @@ export class GameComponent implements OnInit {
       else {
 
         randomNumber = Math.floor(Math.random() * 2);
-        this.attack(defender, attacker, defender.move[randomNumber]);
-  
+        this.attack(defender, attacker, defender.moves[randomNumber]);
+
         if (attacker.hp <=0)
         {
             console.log(attacker.name + " is KO !")
@@ -75,7 +75,7 @@ export class GameComponent implements OnInit {
     }, 2000);
 
 
-    
+
   }
 
   getFastest(): Pokemon{
@@ -86,7 +86,7 @@ export class GameComponent implements OnInit {
     }
   }
 
-  attack(attacker:Pokemon, defender:Pokemon, move:Move): void 
+  attack(attacker:Pokemon, defender:Pokemon, move:Move): void
   {
       let damage = this.calculateDamage(attacker, defender, move);
       console.log(attacker.getName() + "attacks with " + move.name + " and deals " + damage + " damages to " + defender.getName());
@@ -101,7 +101,7 @@ export class GameComponent implements OnInit {
   }
 
   calculateDamage(attacker: Pokemon, defender: Pokemon, move: Move): number {
-          
+
     let atk: number;
     let def: number;
 
